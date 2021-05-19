@@ -91,7 +91,7 @@ const downloadButtonStyles = (variant = 'small') => css`
 `;
 
 const mainStyles = css`
-  margin: 60px 50px 128px 60px;
+  margin: 60px 50px 128px 50px;
 `;
 
 const containerStyles = css`
@@ -461,13 +461,18 @@ function App() {
           </div>
           <div css={video2Container}>
             <video
+              src={video2}
               muted={true}
               autoplay={true}
               loop={true}
-              playsinline
               css={video2Styles}
             >
-              <source src={video2} type="video/mp4" alt="video" />
+              <track
+                src="captions_en.vtt"
+                kind="captions"
+                srclang="en"
+                label="english_captions"
+              />
             </video>
             <img alt="play button" src={play} css={playButtonStyles} />
           </div>
@@ -481,26 +486,36 @@ function App() {
           </div>
           <div>
             <video
+              src={video3}
               muted={true}
               autoplay={true}
               loop={true}
-              playsinline
               css={video3Styles}
             >
-              <source src={video3} type="video/mp4" alt="video" />
+              <track
+                src="captions_en.vtt"
+                kind="captions"
+                srclang="en"
+                label="english_captions"
+              />
             </video>
           </div>
         </section>
         <section css={containerStyles}>
           <div>
             <video
+              src={video4}
               muted={true}
               autoplay={true}
               loop={true}
-              playsinline
               css={video4Styles}
             >
-              <source src={video4} type="video/mp4" alt="video" />
+              <track
+                src="captions_en.vtt"
+                kind="captions"
+                srclang="en"
+                label="english_captions"
+              />
             </video>
           </div>
           <div css={featureStyles}>
@@ -559,7 +574,7 @@ function App() {
                   <img src={santiago} alt="santiago" css={profilePicStyles} />
                 </div>
                 <div>
-                  <h3>Santiage Bocanegra</h3>
+                  <h3>Santiago Bocanegra</h3>
                   <p>Marketing Director at SEM Team</p>
                 </div>
               </div>
