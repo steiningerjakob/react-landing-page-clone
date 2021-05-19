@@ -1,11 +1,11 @@
 // ToDo's
-// 1. Set header position fixed
 // 2. Fix width
 // 3. Make videos run
 // 4. Make toggle button
 
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import ReactPlayer from 'react-player';
 import chloe from './images/chloelebonnois.jpg';
 import colossal from './images/colossal.png';
 import laurent from './images/laurenteymard.jpg';
@@ -14,23 +14,37 @@ import petapixel from './images/petapixel.png';
 import play from './images/play.svg';
 import santiago from './images/santiagobocanegra.jpg';
 import theVerge from './images/the-verge.svg';
-import video1 from './images/video1.mp4';
-import video2 from './images/video2.mp4';
-import video3 from './images/video3.mp4';
-import video4 from './images/video4.mp4';
 import wired from './images/wired.svg';
 import workflow from './images/workflow.png';
+import video2 from './videos/video2.mp4';
+import video3 from './videos/video3.mp4';
+import video4 from './videos/video4.mp4';
 
 const headerStyles = css`
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 999;
   display: flex;
+  background-color: white;
   align-items: center;
-  padding: 5px;
-  margin: 0px 25px;
-  margin-bottom: 10px;
+  justify-content: center;
+  padding: 16px 32px 24px;
+  margin-bottom: 70px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 7%);
+
+  > div {
+    display: flex;
+    align-items: center;
+    margin-left: 620px;
+    margin-top: 10px;
+  }
 `;
 
 const logoStyles = css`
-  margin: 10px 0;
+  position: absolute;
+  left: 55px;
   width: 200px;
   height: 60px;
 `;
@@ -51,29 +65,33 @@ const downloadButtonStyles = (variant = 'small') => css`
   background-color: #59b0ae;
   border-radius: 20px;
   color: white;
-  padding: 10px 20px;
-  font-weight: 600;
+  padding: 11px 24px;
+  font-weight: 650;
   text-align: center;
 
   ${variant === 'large' &&
   css`
-    padding: 20px 70px;
+    padding: 20px 60px;
     max-width: 200px;
     border-radius: 35px;
   `}
 
   ${variant === 'tiny' &&
   css`
-    padding: 10px 30px;
-    max-width: 100px;
-    min-height: 15px;
+    padding: 8px 3px;
     margin-right: 0;
     border-radius: 25px;
+  `}
+  ${variant === 'super-tiny' &&
+  css`
+    padding: 4px 12px;
+    border-radius: 50%;
+    background-color: white;
   `}
 `;
 
 const mainStyles = css`
-  margin: 16px 35px 128px;
+  margin: 60px 50px 128px 60px;
 `;
 
 const containerStyles = css`
@@ -83,12 +101,13 @@ const containerStyles = css`
 
 const heroStyles = css`
   display: block;
-  max-width: 700px;
+  max-width: 600px;
+  margin-right: 90px;
 `;
 
 const h1Styles = css`
   font-size: 3.6em;
-  font-weight: 600;
+  font-weight: 650;
 `;
 
 const h2Styles = css`
@@ -99,7 +118,7 @@ const h2Styles = css`
 const h3Styles = css`
   font-size: 1.5em;
   opacity: 0.5;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 60px;
 `;
 
@@ -112,23 +131,30 @@ const pressStyles = css`
   > div {
     display: block;
     min-width: 250px;
-    font-weight: 500;
+    max-width: 260px;
+    font-weight: 600;
   }
 `;
 
 const pressImageStyles = css`
-  margin: 10px;
-  width: 80px;
-  height: 20px;
+  margin: 5px 5px 10px 5px;
+  width: 70px;
+  height: 25px;
   filter: grayscale(1);
   opacity: 0.5;
 `;
 
-const video1Styles = css`
-  height: 560px;
-  width: 450px;
-  border-radius: 25px;
-  margin-left: 125px;
+const video1Container = css`
+  position: relative;
+  margin: 60px 30px 0 0;
+`;
+
+const reactPlayer = css`
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50px;
+  overflow: hidden;
 `;
 
 const quickDemoH3Styles = css`
@@ -137,7 +163,7 @@ const quickDemoH3Styles = css`
   font-weight: 500;
 `;
 
-const videoContainer = css`
+const video2Container = css`
   width: 100%;
   text-align: center;
   position: relative;
@@ -221,6 +247,7 @@ const referencesStyles = css`
     opacity: 0.5;
     font-size: 1.5em;
     line-height: 1.5em;
+    font-weight: 500;
   }
 
   p {
@@ -273,12 +300,13 @@ const profilePicStyles = css`
 const pricingStyles = css`
   background-color: #f2f2f2;
   border-radius: 25px;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 16px;
+  padding: 5px 16px 10px;
 
   > h2 {
     font-size: 3.4em;
@@ -293,15 +321,15 @@ const pricingStyles = css`
 
   > p {
     opacity: 0.5;
-    font-size: 1em;
+    font-size: 0.9em;
     font-weight: 500;
   }
 `;
 
 const bannerStyles = css`
   background-color: #333333;
-  margin-top: 112px;
-  width: 1130px;
+  margin-top: 80px;
+  width: 1100px;
   border-radius: 30px;
   display: flex;
   justify-content: center;
@@ -319,8 +347,8 @@ const bannerStyles = css`
 `;
 
 const footerStyles = css`
-  padding: 20px;
-  width: 100%;
+  padding: 48px 48px 16px;
+  width: 1150px;
   display: block;
   font-size: 0.8em;
 
@@ -359,17 +387,20 @@ function App() {
   return (
     <>
       <header css={headerStyles}>
-        <img src={logo} alt="Clipdrop logo" css={logoStyles} />
-        <div css={headerRightNavStyles}>
-          <div>Features</div>
-          <div>Pricing</div>
-          <div>Help</div>
-          <div>Contact</div>
-          <div css={downloadButtonStyles()}>Download</div>
+        <div>
+          <img src={logo} alt="Clipdrop logo" css={logoStyles} />
+          <div css={headerRightNavStyles}>
+            <div />
+            <div>Features</div>
+            <div>Pricing</div>
+            <div>Help</div>
+            <div>Contact</div>
+            <div css={downloadButtonStyles()}>Download</div>
+          </div>
         </div>
       </header>
       <main css={mainStyles}>
-        <div css={containerStyles}>
+        <section css={containerStyles}>
           <div css={heroStyles}>
             <h1 css={h1Styles}>
               Create professional product visuals without a photo studio
@@ -409,24 +440,26 @@ function App() {
               </div>
             </div>
           </div>
-          <video
-            muted={true}
-            autoplay={true}
-            loop={true}
-            playsinline
-            css={video1Styles}
-          >
-            <source src={video1} type="video/mp4" alt="video" />
-          </video>
-        </div>
-        <div>
+          <div css={video1Container}>
+            <ReactPlayer
+              url="https://clipdrop.co/public/imgs/clipdrop-demo400.mp4"
+              muted={true}
+              playing={true}
+              loop={true}
+              height="560px"
+              width="450px"
+              css={reactPlayer}
+            />
+          </div>
+        </section>
+        <section>
           <div css={referencesHeading}>
             <h2 css={h2Styles}>Quick demo</h2>
             <h3 css={quickDemoH3Styles}>
               Discover key features of ClipDrop in this short demo
             </h3>
           </div>
-          <div css={videoContainer}>
+          <div css={video2Container}>
             <video
               muted={true}
               autoplay={true}
@@ -438,8 +471,8 @@ function App() {
             </video>
             <img alt="play button" src={play} css={playButtonStyles} />
           </div>
-        </div>
-        <div css={containerStyles}>
+        </section>
+        <section css={containerStyles}>
           <div css={featureStyles}>
             <h2 css={h2Styles}>Capture directly from your desktop</h2>
             <h3 css={quickDemoH3Styles}>
@@ -457,8 +490,8 @@ function App() {
               <source src={video3} type="video/mp4" alt="video" />
             </video>
           </div>
-        </div>
-        <div css={containerStyles}>
+        </section>
+        <section css={containerStyles}>
           <div>
             <video
               muted={true}
@@ -480,8 +513,8 @@ function App() {
               ▸ Download and try for free
             </a>
           </div>
-        </div>
-        <div css={containerStyles}>
+        </section>
+        <section css={containerStyles}>
           <div css={featureStyles}>
             <h2 css={h2Styles}>Integrates with your workflow</h2>
             <h3 css={quickDemoH3Styles}>
@@ -497,8 +530,8 @@ function App() {
           <div>
             <img src={workflow} alt="workflow" css={workflowStyles} />
           </div>
-        </div>
-        <div>
+        </section>
+        <section>
           <div css={referencesHeading}>
             <h2 css={h2Styles}>They love ClipDrop</h2>
           </div>
@@ -556,8 +589,8 @@ function App() {
               </blockquote>
             </li>
           </ul>
-        </div>
-        <div css={containerStyles}>
+        </section>
+        <section css={containerStyles}>
           <div css={featureStyles}>
             <h2 css={h2Styles}>A simple pricing</h2>
             <h3 css={quickDemoH3Styles}>
@@ -567,7 +600,9 @@ function App() {
           </div>
           <div css={pricingStyles}>
             <h3>Billed annually</h3>
-            <span css={downloadButtonStyles('tiny')}> </span>
+            <span css={downloadButtonStyles('tiny')}>
+              <span css={downloadButtonStyles('super-tiny')}> </span>
+            </span>
             <h2>$4.16 / month *</h2>
             <h3>$49.90 / year (save $69.98!)</h3>
             <p>
@@ -575,11 +610,11 @@ function App() {
               Store and Google Store may vary depending on location.
             </p>
           </div>
-        </div>
-        <div css={bannerStyles}>
+        </section>
+        <section css={bannerStyles}>
           <h3 css={h3Styles}>Try it for free</h3>
           <span css={downloadButtonStyles('large')}>Download</span>
-        </div>
+        </section>
       </main>
       <footer css={footerStyles}>
         <div css={footerBoxStyles}>
