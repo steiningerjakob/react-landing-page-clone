@@ -465,6 +465,7 @@ function App() {
               muted={true}
               autoplay={true}
               loop={true}
+              controls
               css={video2Styles}
             >
               <track
@@ -490,6 +491,7 @@ function App() {
               muted={true}
               autoplay={true}
               loop={true}
+              controls
               css={video3Styles}
             >
               <track
@@ -508,6 +510,7 @@ function App() {
               muted={true}
               autoplay={true}
               loop={true}
+              controls
               css={video4Styles}
             >
               <track
