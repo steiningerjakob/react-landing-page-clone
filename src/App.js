@@ -5,7 +5,6 @@
 
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import ReactPlayer from 'react-player';
 import chloe from './images/chloelebonnois.jpg';
 import colossal from './images/colossal.png';
 import laurent from './images/laurenteymard.jpg';
@@ -16,6 +15,7 @@ import santiago from './images/santiagobocanegra.jpg';
 import theVerge from './images/the-verge.svg';
 import wired from './images/wired.svg';
 import workflow from './images/workflow.png';
+import video1 from './videos/video1.mp4';
 import video2 from './videos/video2.mp4';
 import video3 from './videos/video3.mp4';
 import video4 from './videos/video4.mp4';
@@ -146,14 +146,15 @@ const pressImageStyles = css`
 
 const video1Container = css`
   position: relative;
-  margin: 60px 30px 0 0;
+  margin: 65px 30px 0 0;
 `;
 
-const reactPlayer = css`
+const video1Styles = css`
   position: absolute;
   top: 0;
   left: 0;
-  border-radius: 50px;
+  border-radius: 25px;
+  width: 450px;
   overflow: hidden;
 `;
 
@@ -200,7 +201,7 @@ const featureStyles = css`
 `;
 
 const video3Styles = css`
-  height: 400px;
+  width: 500px;
   border-radius: 25px;
 `;
 
@@ -441,15 +442,20 @@ function App() {
             </div>
           </div>
           <div css={video1Container}>
-            <ReactPlayer
-              url="https://clipdrop.co/public/imgs/clipdrop-demo400.mp4"
+            <video
+              src={video1}
               muted={true}
-              playing={true}
+              autoplay="autoplay"
               loop={true}
-              height="560px"
-              width="450px"
-              css={reactPlayer}
-            />
+              css={video1Styles}
+            >
+              <track
+                src="captions_en.vtt"
+                kind="captions"
+                srclang="en"
+                label="english_captions"
+              />
+            </video>
           </div>
         </section>
         <section>
@@ -463,9 +469,8 @@ function App() {
             <video
               src={video2}
               muted={true}
-              autoplay={true}
+              autoplay="autoplay"
               loop={true}
-              controls
               css={video2Styles}
             >
               <track
@@ -489,9 +494,8 @@ function App() {
             <video
               src={video3}
               muted={true}
-              autoplay={true}
+              autoplay="autoplay"
               loop={true}
-              controls
               css={video3Styles}
             >
               <track
@@ -508,9 +512,8 @@ function App() {
             <video
               src={video4}
               muted={true}
-              autoplay={true}
+              autoplay="autoplay"
               loop={true}
-              controls
               css={video4Styles}
             >
               <track
